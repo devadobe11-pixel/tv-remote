@@ -1,0 +1,12 @@
+.gradle/
+build/
+app/build/
+tvin-out/
+local.properties
+keystore/
+*.jks
+*.keystore
+.idea/
+*.iml
+.DS_Store
+Thumbs.db

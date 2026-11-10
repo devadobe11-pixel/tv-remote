@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#0D1017">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Connection Status & TV IP Controls -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Connecting to TV..."
+                android:textColor="#9CA3AF"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnFindTv"
+                style="@style/AppChip"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="6dp"
+                android:text="Auto Find" />
+
+            <Button
+                android:id="@+id/btnSetIp"
+                style="@style/AppChip"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="IP" />
+        </LinearLayout>
+
+        <!-- Primary Voice Control Button -->
+        <Button
+            android:id="@+id/btnVoiceCmd"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="@drawable/bg_voice"
+            android:text="🎙  Tap &amp; Speak (Open app, Search, Volume...)"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvVoiceResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:paddingBottom="10dp"
+            android:text="Try: &quot;Open Netflix&quot;, &quot;Search Arijit Singh&quot;, &quot;Volume down&quot;"
+            android:textColor="#6B7280"
+            android:textSize="12sp" />
+
+        <!-- Quick Apps Bar -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingBottom="14dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAppYoutube"
+                    style="@style/AppChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="▶ YouTube" />
+
+                <Button
+                    android:id="@+id/btnAppNetflix"
+                    style="@style/AppChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="N  Netflix" />
+
+                <Button
+                    android:id="@+id/btnAppPrime"
+                    style="@style/AppChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Prime Video" />
+
+                <Button
+                    android:id="@+id/btnAppHotstar"
+                    style="@style/AppChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="JioHotstar" />
+
+                <Button
+                    android:id="@+id/btnAppInputs"
+                    style="@style/AppChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="HDMI / AV" />
+
+                <Button
+                    android:id="@+id/btnAppCast"
+                    style="@style/AppChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Cast" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Digital Remote D-Pad -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="12dp">
+
+            <!-- Top utility row: Power | Up | Home -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnPower"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="⏻ Power"
+                    android:textColor="#F87171" />
+
+                <Button
+                    android:id="@+id/btnUp"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="1.2"
+                    android:layout_marginEnd="8dp"
+                    android:text="▲"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnHome"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="1"
+                    android:text="⌂ Home" />
+            </LinearLayout>
+
+            <!-- Middle D-Pad row: Left | OK | Right -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnLeft"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="68dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="◀"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnOk"
+                    android:layout_width="0dp"
+                    android:layout_height="68dp"
+                    android:layout_weight="1.2"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_ok"
+                    android:text="OK"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnRight"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="68dp"
+                    android:layout_weight="1"
+                    android:text="▶"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <!-- Bottom D-Pad row: Back | Down | Play/Pause -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <Button
+                    android:id="@+id/btnBack"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="↩ Back" />
+
+                <Button
+                    android:id="@+id/btnDown"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="1.2"
+                    android:layout_marginEnd="8dp"
+                    android:text="▼"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnPlayPause"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="1"
+                    android:text="⏯ Play" />
+            </LinearLayout>
+
+            <!-- Volume Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnVolDown"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="🔉 Vol −" />
+
+                <Button
+                    android:id="@+id/btnMute"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="0.8"
+                    android:layout_marginEnd="8dp"
+                    android:text="🔇 Mute" />
+
+                <Button
+                    android:id="@+id/btnVolUp"
+                    style="@style/RemoteKey"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="🔊 Vol +" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Typing Pad Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="6dp"
+            android:text="Typing Pad (Search bars &amp; Passwords)"
+            android:textColor="#9CA3AF"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
+
+            <EditText
+                android:id="@+id/etTextInput"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_input"
+                android:hint="Type or speak for TV search..."
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="#F9FAFB"
+                android:textColorHint="#6B7280"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btnMicType"
+                style="@style/RemoteKey"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="🎙"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSendType"
+                style="@style/RemoteKey"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Type Only" />
+
+            <Button
+                android:id="@+id/btnSendSearch"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1.2"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_ok"
+                android:text="Search ↵"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnKeyDel"
+                style="@style/RemoteKey"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                android:layout_marginEnd="8dp"
+                android:text="⌫"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/btnKeyEnter"
+                style="@style/RemoteKey"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                android:text="↵"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
