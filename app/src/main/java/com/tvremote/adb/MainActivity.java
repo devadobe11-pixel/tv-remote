@@ -218,6 +218,9 @@ public class MainActivity extends Activity {
                 case SEARCH_NETFLIX:
                     runTvTask(null, false, now, () -> searchNetflix(cmd.payload));
                     break;
+                case SEARCH_NETMIRROR:
+                    runTvTask(null, false, now, () -> searchNetMirror(cmd.payload));
+                    break;
                 case SMART_SEARCH:
                     runTvTask(null, false, now, () -> performAppAwareSearch(cmd.payload, false));
                     break;
@@ -244,16 +247,15 @@ public class MainActivity extends Activity {
             searchNetflix(query);
             return;
         }
-        if (focus.contains("com.netmirror.tv") || focus.contains("app.netmirror.newtv")) {
-            adb.shell(VoiceCommandParser.netMirrorSearchCmd(query));
-            ui.post(() -> tvVoiceResult.setText("NetMirror Search: " + query));
+        if (focus.contains("app.netmirror.newtv") || focus.contains("com.netmirror.tv")) {
+            searchNetMirror(query);
             return;
         }
         if (draftIfOnHome) {
             ui.post(() -> {
                 etTextInput.setText(query);
                 etTextInput.setSelection(query.length());
-                tvVoiceResult.setText("Open YouTube/Prime/Netflix to voice search, or tap Search ↵ for \"" + query + "\"");
+                tvVoiceResult.setText("Open YouTube/Prime/Netflix/NetMirror to voice search, or tap Search ↵ for \"" + query + "\"");
             });
             return;
         }
@@ -286,6 +288,21 @@ public class MainActivity extends Activity {
         }
         adb.sendText(query, true);
         ui.post(() -> tvVoiceResult.setText("Netflix Search: " + query));
+    }
+
+    private void searchNetMirror(String query) throws Exception {
+        ui.post(() -> tvVoiceResult.setText("Searching NetMirror: " + query + "..."));
+        String focus = adb.getForegroundWindow();
+        if (!focus.contains("app.netmirror.newtv")) {
+            adb.shell(VoiceCommandParser.CMD_OPEN_NETMIRROR);
+            Thread.sleep(1200);
+        }
+        // Top menu navigation to in-app search: Up, Up, Left, Left, OK
+        adb.sendKeys(19, 19, 21, 21, 23);
+        Thread.sleep(350);
+        adb.clearText();
+        adb.sendText(query, true);
+        ui.post(() -> tvVoiceResult.setText("NetMirror Search: " + query));
     }
 
     private void autoConnect() {

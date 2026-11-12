@@ -19,6 +19,7 @@ public final class VoiceCommandParser {
         SEARCH_YOUTUBE,
         SEARCH_PRIME,
         SEARCH_NETFLIX,
+        SEARCH_NETMIRROR,
         QUERY_OR_DRAFT
     }
 
@@ -175,7 +176,7 @@ public final class VoiceCommandParser {
             return new ParsedCommand(ActionType.SEARCH_NETFLIX, "Netflix Search: " + q, q);
         }
         if ((q = stripSuffix(body, lower, " on netmirror", " in netmirror", " on net mirror")) != null) {
-            return new ParsedCommand(ActionType.SHELL, "NetMirror Search: " + q, netMirrorSearchCmd(q));
+            return new ParsedCommand(ActionType.SEARCH_NETMIRROR, "NetMirror Search: " + q, q);
         }
         return new ParsedCommand(ActionType.SMART_SEARCH, "Search: " + body, body);
     }
@@ -193,7 +194,7 @@ public final class VoiceCommandParser {
             return new ParsedCommand(ActionType.SEARCH_NETFLIX, "Netflix Search: " + q, q);
         }
         if ((q = stripSuffix(raw, lower, " on netmirror", " in netmirror", " on net mirror")) != null) {
-            return new ParsedCommand(ActionType.SHELL, "NetMirror Search: " + q, netMirrorSearchCmd(q));
+            return new ParsedCommand(ActionType.SEARCH_NETMIRROR, "NetMirror Search: " + q, q);
         }
         return new ParsedCommand(ActionType.QUERY_OR_DRAFT, "Title/Query: \"" + raw + "\"", raw);
     }

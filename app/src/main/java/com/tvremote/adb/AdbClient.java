@@ -151,6 +151,11 @@ public final class AdbClient {
         shell("input text " + escaped + (submitEnter ? "; input keyevent 66" : ""));
     }
 
+    public synchronized void clearText() throws IOException {
+        if (trySendFastLine("c")) return;
+        shell("input keyevent 67; input keyevent 67; input keyevent 67; input keyevent 67");
+    }
+
     private void ensureConnected() throws IOException {
         if (!isConnected()) {
             if (connectedHost == null) {
