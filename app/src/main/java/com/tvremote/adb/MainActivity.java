@@ -244,7 +244,7 @@ public class MainActivity extends Activity {
             searchNetflix(query);
             return;
         }
-        if (focus.contains("com.netmirror.tv")) {
+        if (focus.contains("com.netmirror.tv") || focus.contains("app.netmirror.newtv")) {
             adb.shell(VoiceCommandParser.netMirrorSearchCmd(query));
             ui.post(() -> tvVoiceResult.setText("NetMirror Search: " + query));
             return;

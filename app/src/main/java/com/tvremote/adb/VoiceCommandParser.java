@@ -46,7 +46,7 @@ public final class VoiceCommandParser {
     public static final String CMD_OPEN_HOTSTAR =
             "monkey -p in.startv.hotstar -c android.intent.category.LEANBACK_LAUNCHER 1";
     public static final String CMD_OPEN_NETMIRROR =
-            "monkey -p com.netmirror.tv -c android.intent.category.LEANBACK_LAUNCHER 1";
+            "monkey -p app.netmirror.newtv -c android.intent.category.LEANBACK_LAUNCHER 1 || monkey -p com.netmirror.tv -c android.intent.category.LEANBACK_LAUNCHER 1";
     public static final String CMD_OPEN_MIRACAST =
             "monkey -p com.hisilicon.miracast 1";
     public static final String CMD_OPEN_INPUTS =
