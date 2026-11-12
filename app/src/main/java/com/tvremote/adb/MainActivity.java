@@ -97,6 +97,7 @@ public class MainActivity extends Activity {
         bindShell(R.id.btnAppNetflix, "Opening Netflix", VoiceCommandParser.CMD_OPEN_NETFLIX);
         bindShell(R.id.btnAppPrime, "Opening Prime Video", VoiceCommandParser.CMD_OPEN_PRIME);
         bindShell(R.id.btnAppHotstar, "Opening JioHotstar", VoiceCommandParser.CMD_OPEN_HOTSTAR);
+        bindShell(R.id.btnAppNetMirror, "Opening NetMirror", VoiceCommandParser.CMD_OPEN_NETMIRROR);
         bindShell(R.id.btnAppInputs, "Opening Inputs", VoiceCommandParser.CMD_OPEN_INPUTS);
         bindShell(R.id.btnAppCast, "Opening Miracast", VoiceCommandParser.CMD_OPEN_MIRACAST);
 
@@ -241,6 +242,11 @@ public class MainActivity extends Activity {
         }
         if (focus.contains("com.netflix.mediaclient")) {
             searchNetflix(query);
+            return;
+        }
+        if (focus.contains("com.netmirror.tv")) {
+            adb.shell(VoiceCommandParser.netMirrorSearchCmd(query));
+            ui.post(() -> tvVoiceResult.setText("NetMirror Search: " + query));
             return;
         }
         if (draftIfOnHome) {

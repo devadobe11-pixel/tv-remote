@@ -45,6 +45,8 @@ public final class VoiceCommandParser {
             "am start -n com.amazon.amazonvideo.livingroom/com.amazon.ignition.IgnitionActivity";
     public static final String CMD_OPEN_HOTSTAR =
             "monkey -p in.startv.hotstar -c android.intent.category.LEANBACK_LAUNCHER 1";
+    public static final String CMD_OPEN_NETMIRROR =
+            "monkey -p com.netmirror.tv -c android.intent.category.LEANBACK_LAUNCHER 1";
     public static final String CMD_OPEN_MIRACAST =
             "monkey -p com.hisilicon.miracast 1";
     public static final String CMD_OPEN_INPUTS =
@@ -71,6 +73,11 @@ public final class VoiceCommandParser {
     public static String netflixOpenSearchCmd() {
         return "am start -n com.netflix.mediaclient/.ui.launch.NetflixComLaunchActivity "
                 + "-a android.intent.action.VIEW -d 'https://www.netflix.com/search'";
+    }
+
+    public static String netMirrorSearchCmd(String query) {
+        return "am start -n com.netmirror.tv/.MainActivity -a android.intent.action.VIEW -d 'https://netmirror.app/search?q="
+                + urlEncode(query) + "'";
     }
 
     public static ParsedCommand parse(String transcript) {
@@ -167,6 +174,9 @@ public final class VoiceCommandParser {
         if ((q = stripSuffix(body, lower, " on netflix", " in netflix")) != null) {
             return new ParsedCommand(ActionType.SEARCH_NETFLIX, "Netflix Search: " + q, q);
         }
+        if ((q = stripSuffix(body, lower, " on netmirror", " in netmirror", " on net mirror")) != null) {
+            return new ParsedCommand(ActionType.SHELL, "NetMirror Search: " + q, netMirrorSearchCmd(q));
+        }
         return new ParsedCommand(ActionType.SMART_SEARCH, "Search: " + body, body);
     }
 
@@ -181,6 +191,9 @@ public final class VoiceCommandParser {
         }
         if ((q = stripSuffix(raw, lower, " on netflix")) != null) {
             return new ParsedCommand(ActionType.SEARCH_NETFLIX, "Netflix Search: " + q, q);
+        }
+        if ((q = stripSuffix(raw, lower, " on netmirror", " in netmirror", " on net mirror")) != null) {
+            return new ParsedCommand(ActionType.SHELL, "NetMirror Search: " + q, netMirrorSearchCmd(q));
         }
         return new ParsedCommand(ActionType.QUERY_OR_DRAFT, "Title/Query: \"" + raw + "\"", raw);
     }
@@ -197,6 +210,9 @@ public final class VoiceCommandParser {
         }
         if (target.equals("hotstar") || target.equals("jiohotstar") || target.equals("jio hotstar") || target.equals("disney")) {
             return new ParsedCommand(ActionType.SHELL, "Open JioHotstar", CMD_OPEN_HOTSTAR);
+        }
+        if (target.equals("netmirror") || target.equals("net mirror") || target.equals("catflix")) {
+            return new ParsedCommand(ActionType.SHELL, "Open NetMirror", CMD_OPEN_NETMIRROR);
         }
         if (target.equals("miracast") || target.equals("cast") || target.equals("mirror") || target.equals("screen mirror")) {
             return new ParsedCommand(ActionType.SHELL, "Open Miracast", CMD_OPEN_MIRACAST);

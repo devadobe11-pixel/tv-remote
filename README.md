@@ -14,9 +14,10 @@ An ultra-lightweight (~34 KB), standalone Android phone remote **built and optim
 * **Digital Remote:** Power, Home, Back, D-Pad + OK, Play/Pause, Volume +/-, Mute.
 * **Typing Pad:** Type or dictate text (`Type Only`, `Search ↵`, Backspace, Enter) directly into TV search bars and password boxes.
 * **Voice Control & App-Aware Search:**
-  * `"Open Netflix"`, `"Open Prime Video"`, `"Open YouTube"`, `"Volume up"`, `"Mute"`, `"Home"`, `"Back"`
-  * Say a movie, series, or song name while **SmartTube**, **Prime Video**, or **Netflix** is open on screen and it automatically opens search and submits the query on the TV.
-  * Target explicitly anytime: `"Search Mirzapur on Prime Video"`, `"Money Heist on Netflix"`, `"Search Kesariya on YouTube"`.
+  * `"Open NetMirror"`, `"Open Netflix"`, `"Open Prime Video"`, `"Open YouTube"`, `"Volume up"`, `"Mute"`, `"Home"`, `"Back"`
+  * Say a movie, series, or song name while **NetMirror**, **SmartTube**, **Prime Video**, or **Netflix** is open on screen and it automatically opens search and submits the query on the TV.
+  * Target explicitly anytime: `"Search Stranger Things on NetMirror"`, `"Search Mirzapur on Prime Video"`, `"Money Heist on Netflix"`, `"Search Kesariya on YouTube"`.
+* **Quick Launch Apps Bar:** One-tap launch chips for **YouTube**, **Netflix**, **Prime Video**, **JioHotstar**, **NetMirror**, **HDMI/AV Inputs**, and **Miracast**.
 
 ## Requirements & Security Warning
 

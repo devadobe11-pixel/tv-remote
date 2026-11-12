@@ -112,6 +112,14 @@
                     android:text="JioHotstar" />
 
                 <Button
+                    android:id="@+id/btnAppNetMirror"
+                    style="@style/AppChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="🍿 NetMirror" />
+
+                <Button
                     android:id="@+id/btnAppInputs"
                     style="@style/AppChip"
                     android:layout_width="wrap_content"
