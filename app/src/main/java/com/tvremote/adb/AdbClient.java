@@ -23,7 +23,7 @@ public final class AdbClient {
     public static final int DEFAULT_PORT = 5555;
     private static final int CONNECT_TIMEOUT_MS = 2500;
     private static final int READ_TIMEOUT_MS = 6000;
-    private static final String REMOTE_DEX_PATH = "/data/local/tmp/tvin.dex";
+    private static final String REMOTE_DEX_PATH = "/data/local/tmp/tvin_v3.dex";
 
     private static final int A_CNXN = 0x4E584E43;
     private static final int A_AUTH = 0x48545541;
@@ -200,13 +200,25 @@ public final class AdbClient {
         }
     }
 
+    private static String getMd5(byte[] bytes) {
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            byte[] hash = md.digest(bytes);
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hash) sb.append(String.format("%02x", b));
+            return sb.toString();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     private void ensureFastInput() throws IOException {
         if (tvinDexBytes == null || tvinDexBytes.length == 0) return;
 
-        // Upload tvin.dex only when missing or byte size differs (~100ms once).
-        String sizeOut = runShellOnce("wc -c < " + REMOTE_DEX_PATH + " 2>/dev/null").trim();
-        String expected = String.valueOf(tvinDexBytes.length);
-        if (!expected.equals(sizeOut)) {
+        // Verify hash instead of raw size to guarantee matching class definitions.
+        String expectedMd5 = getMd5(tvinDexBytes);
+        String md5Out = runShellOnce("md5sum " + REMOTE_DEX_PATH + " 2>/dev/null").trim();
+        if (!md5Out.startsWith(expectedMd5)) {
             String b64 = Base64.encodeToString(tvinDexBytes, Base64.NO_WRAP);
             runShellOnce("echo '" + b64 + "' | base64 -d > " + REMOTE_DEX_PATH + " && chmod 644 " + REMOTE_DEX_PATH);
         }
